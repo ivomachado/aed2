@@ -77,13 +77,11 @@ static short Vazia(TFila *f) {
     return 0;
 }
 
-/**Verifica a ocupação da fila. Para uma fila criada, verifica se ela tem UM
-*elemento, pelo menos. Caso haja elementos o status retornado é de que a fila
-*NÃO está vazia, caso contrário tem-se a indicação de fila vazia.
+/**Criar uma nova instância de fila
 *
-*Pré-cond: Fila criada.
+*Pré-cond: .
 *
-*Pós-cond: Fila inalterada.
+*Pós-cond: Instância de fila criada.
 */
 
 TFila* CriarFila() {

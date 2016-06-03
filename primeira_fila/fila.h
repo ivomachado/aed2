@@ -1,12 +1,12 @@
 typedef struct fila TFila;
 
-typedef short (*TEnfileirar)(TFila*, int);
+typedef short (*TEnfileirar)(TFila *, int);
 
-typedef int (*TDesenfileirar)(TFila*);
+typedef int (*TDesenfileirar)(TFila *);
 
-typedef short (*TVazia)(TFila*);
+typedef short (*TVazia)(TFila *);
 
-TFila* CriarFila();
+TFila *CriarFila();
 
 struct fila {
     void *dado;

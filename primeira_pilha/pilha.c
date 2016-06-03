@@ -4,13 +4,10 @@
 #define TAM 10
 #define NaN 0 / 0.
 
-typedef struct
-{
+typedef struct {
     int topo;
     int pilha[TAM];
-}TDado;
-
-
+} TDado;
 
 /** Insere um novo elemento na pilha. Para uma pilha criada
 * a função irá inserir o elemento passado
@@ -22,17 +19,15 @@ typedef struct
 * Pós-Cond: elemento inserido na pilha, se houver espaço.
 */
 
-static char Empilhar(TPilha *p, int v)
-{
-    TDado *d = (TDado*)p->dado;
+static char Empilhar(TPilha *p, int v) {
+    TDado *d = (TDado *)p->dado;
 
-    if(d->topo < TAM)
-    {
+    if (d->topo < TAM) {
         d->topo++;
         d->pilha[d->topo] = v;
         return 1;
-    }
-    else return 0;
+    } else
+        return 0;
 }
 
 /** Remove o primeiro elemento da pilha. Para a pilha passada, o último elemento
@@ -44,14 +39,13 @@ static char Empilhar(TPilha *p, int v)
 * Pós-cond: Elemento removido, se pilha não estiver vazia.
 */
 
-static int Desempilhar(TPilha *p)
-{
-    TDado *d = (TDado*)p->dado;
+static int Desempilhar(TPilha *p) {
+    TDado *d = (TDado *)p->dado;
 
-    if(d->topo >= 0) return d->pilha[d->topo--];
+    if (d->topo >= 0)
+        return d->pilha[d->topo--];
     return NaN;
 }
-
 
 /**Verifica a ocupação da pilha. Para uma pilha criada, verifica se ela tem UM
 *elemento, pelo menos. Caso haja elementos o status retornado é de que a pilha
@@ -63,7 +57,7 @@ static int Desempilhar(TPilha *p)
 */
 
 static char Vazia(TPilha *p) {
-    TDado *d = (TDado*)p->dado;
+    TDado *d = (TDado *)p->dado;
 
     if (d->topo == -1)
         return 1;
@@ -71,10 +65,9 @@ static char Vazia(TPilha *p) {
     return 0;
 }
 
-TPilha* CriarPilha()
-{
-    TPilha *f = (TPilha*)malloc(sizeof(TPilha));
-    TDado *d = (TDado*)malloc(sizeof(TDado));
+TPilha *CriarPilha() {
+    TPilha *f = (TPilha *)malloc(sizeof(TPilha));
+    TDado *d = (TDado *)malloc(sizeof(TDado));
 
     d->topo = -1;
 

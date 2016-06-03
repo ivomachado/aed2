@@ -2,13 +2,13 @@
 
 typedef struct pilha TPilha;
 
-typedef char (*TEmpilhar)(TPilha*,int);
-typedef int (*TDesempilhar)(TPilha*);
-typedef char (*TVazia)(TPilha*);
+typedef char (*TEmpilhar)(TPilha *, int);
+typedef int (*TDesempilhar)(TPilha *);
+typedef char (*TVazia)(TPilha *);
 
-TPilha* CriarPilha();
+TPilha *CriarPilha();
 
-struct pilha{
+struct pilha {
     void *dado;
     TEmpilhar empilhar;
     TDesempilhar desempilhar;

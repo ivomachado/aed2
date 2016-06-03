@@ -18,7 +18,7 @@ typedef struct {
 */
 static int Desenfileirar(TFila *f) {
     int elemento;
-    TDado *d = (TDado*)f->dado;
+    TDado *d = (TDado *)f->dado;
     if (d->primeiro == -1) {
         elemento = NaN;
     } else {
@@ -46,7 +46,7 @@ static int Desenfileirar(TFila *f) {
 */
 static short Enfileirar(TFila *f, int elemento) {
     short status = 1; // verdade (vai dar tudo certo)
-    TDado *d = (TDado*)f->dado;
+    TDado *d = (TDado *)f->dado;
 
     if (d->primeiro == -1) {
         d->primeiro = d->ultimo = 0;
@@ -69,7 +69,7 @@ static short Enfileirar(TFila *f, int elemento) {
 *Pós-cond: Fila inalterada.
 */
 static short Vazia(TFila *f) {
-    TDado *d = (TDado*)f->dado;
+    TDado *d = (TDado *)f->dado;
 
     if (d->primeiro == -1)
         return 1;
@@ -84,9 +84,9 @@ static short Vazia(TFila *f) {
 *Pós-cond: Instância de fila criada.
 */
 
-TFila* CriarFila() {
-    TFila *fila = (TFila*)malloc(sizeof(TFila));
-    TDado *dado = (TDado*)malloc(sizeof(TDado));
+TFila *CriarFila() {
+    TFila *fila = (TFila *)malloc(sizeof(TFila));
+    TDado *dado = (TDado *)malloc(sizeof(TDado));
     fila->dado = dado;
     dado->primeiro = dado->ultimo = -1;
 

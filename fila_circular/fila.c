@@ -19,17 +19,12 @@ typedef struct {
 */
 static int Desenfileirar(TFila *f) {
     int elemento;
-    TDado *d = (TDado*)f->dado;
-    if (d->primeiro == -1) {
+    TDado *d = (TDado *)f->dado;
+    if (d->cont == 0) {
         elemento = NaN;
     } else {
         elemento = d->fila[d->primeiro];
-        if (d->primeiro == d->ultimo) {
-            d->primeiro = d->ultimo = -1;
-        } else {
-            if(d->primeiro == TAM - 1) d->primeiro = 0;
-            else d->primeiro++;
-        }
+        d->primeiro = (d->primeiro + 1) % TAM;
         d->cont--;
     }
     return elemento;
@@ -46,14 +41,10 @@ static int Desenfileirar(TFila *f) {
 */
 static short Enfileirar(TFila *f, int elemento) {
     short status = 1; // verdade (vai dar tudo certo)
-    TDado *d = (TDado*)f->dado;
+    TDado *d = (TDado *)f->dado;
 
-    if (d->primeiro == -1) {
-        d->primeiro = d->ultimo = 0;
-        d->fila[d->primeiro] = elemento;
-    } else if (d->cont < TAM) {
-        if(d->ultimo == TAM - 1) d->ultimo = 0;
-        else d->ultimo++;
+    if (d->cont < TAM) {
+        d->ultimo = (d->ultimo + 1) % TAM;
         d->fila[d->ultimo] = elemento;
     } else {
         status = 0; // falso (deu errado)
@@ -71,12 +62,8 @@ static short Enfileirar(TFila *f, int elemento) {
 *Pós-cond: Fila inalterada.
 */
 static short Vazia(TFila *f) {
-    TDado *d = (TDado*)f->dado;
-
-    if (d->primeiro == -1)
-        return 1;
-
-    return 0;
+    TDado *d = (TDado *)f->dado;
+    return d->cont == 0;
 }
 
 /**Criar uma nova instância de fila
@@ -86,11 +73,12 @@ static short Vazia(TFila *f) {
 *Pós-cond: Instância de fila criada.
 */
 
-TFila* CriarFila() {
-    TFila *fila = (TFila*)malloc(sizeof(TFila));
-    TDado *dado = (TDado*)malloc(sizeof(TDado));
+TFila *CriarFila() {
+    TFila *fila = (TFila *)malloc(sizeof(TFila));
+    TDado *dado = (TDado *)malloc(sizeof(TDado));
     fila->dado = dado;
-    dado->primeiro = dado->ultimo = -1;
+    dado->primeiro = 1;
+    dado->ultimo = 0;
     dado->cont = 0;
 
     fila->desenfileirar = Desenfileirar;

@@ -40,7 +40,8 @@ static void Extender(TFila *f) {
     TDado *d = (TDado *)f->dado;
     int *v = (int *)malloc(sizeof(int) * d->tam * 2), i;
     for (i = 0; i < d->tam; i++) {
-        v[i] = f->desenfileirar(f);
+        v[i] = d->fila[d->primeiro];
+        d->primeiro = (d->primeiro + 1) % d->tam;
     }
     free(d->fila);
     d->cont = d->tam;

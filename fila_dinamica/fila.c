@@ -1,6 +1,5 @@
 #include "fila.h"
-#include "stdlib.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 #define NaN 0 / 0.
 typedef struct {
@@ -65,9 +64,7 @@ static short Enfileirar(TFila *f, int elemento) {
     TDado *d = (TDado *)f->dado;
 
     if (d->cont == d->tam) {
-        printf("tamanho: %d, quantidade: %d\n", d->tam, d->cont);
         Extender(f);
-        printf("tamanho: %d, quantidade: %d\n\n\n", d->tam, d->cont);
     }
     d->ultimo = (d->ultimo + 1) % d->tam;
     d->fila[d->ultimo] = elemento;

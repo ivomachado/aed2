@@ -1,5 +1,5 @@
 #include "pilha.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 #define TAM 10
 #define NaN 0 / 0.

@@ -15,7 +15,7 @@ static void Inserir(THeap *h, int elemento) {
         d->vetor[i] = elemento;
         d->ocupacao++;
         pai = (i-1)/2;
-        while(pai >= 0 && d->vetor[pai] < d->vetor[i]) {
+        while(d->vetor[pai] < d->vetor[i]) {
             aux = d->vetor[pai];
             d->vetor[pai] = d->vetor[i];
             d->vetor[i] = aux;

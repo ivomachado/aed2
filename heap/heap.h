@@ -1,11 +1,13 @@
 typedef struct heap THeap;
 
-typedef void (*TInserir)(THeap *, int);
+typedef void (*TInserir)(THeap *, void *);
 typedef void (*TPrint)(THeap *);
 typedef void (*TRemover)(THeap *);
-typedef int (*TTopo)(THeap *);
+typedef int (*TComparar)(void *, void *);
+typedef void (*TPrintInterno)(void *);
+typedef void *(*TTopo)(THeap *);
 
-THeap *CriarHeap(int tam);
+THeap *CriarHeap(int tam, TPrintInterno _print, TComparar comparar);
 
 struct heap {
   void *dado;

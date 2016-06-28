@@ -1,19 +1,34 @@
 #include "heap.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-#define SIZE 10
+#define SIZE 6
 
-int main() {
-    THeap *f = CriarHeap(SIZE);
+void print(void* v)
+{
+    printf("%d____\n", *(int*)v);
+}
+
+int comparar(void* a, void* b)
+{
+    return *(int*)a - *(int*)b;
+}
+
+int main()
+{
+    THeap* f = CriarHeap(SIZE, print, comparar);
     int oi[SIZE];
     int i;
-    for (i = 0; i < SIZE; i++) {
-        f->inserir(f, i);
+    int* var;
+    for (i = 1; i <= SIZE; i++) {
+        var = (int*)malloc(sizeof(int));
+        *var = i;
+        f->inserir(f, var);
+        f->print(f);
     }
-    f->print(f);
 
     for (i = 0; i < SIZE; i++) {
-        oi[SIZE - i - 1] = f->topo(f);
+        oi[SIZE - i - 1] = *(int*)f->topo(f);
         f->remover(f);
     }
     for (i = 0; i < SIZE; i++) {

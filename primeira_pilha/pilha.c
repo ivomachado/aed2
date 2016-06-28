@@ -6,7 +6,7 @@
 
 typedef struct {
     int topo;
-    int pilha[TAM];
+    void *pilha[TAM];
 } TDado;
 
 /** Insere um novo elemento na pilha. Para uma pilha criada
@@ -19,7 +19,7 @@ typedef struct {
 * Pós-Cond: elemento inserido na pilha, se houver espaço.
 */
 
-static char Empilhar(TPilha *p, int v) {
+static char Empilhar(TPilha *p, void *v) {
     TDado *d = (TDado *)p->dado;
 
     if (d->topo < TAM) {
@@ -39,12 +39,12 @@ static char Empilhar(TPilha *p, int v) {
 * Pós-cond: Elemento removido, se pilha não estiver vazia.
 */
 
-static int Desempilhar(TPilha *p) {
+static void *Desempilhar(TPilha *p) {
     TDado *d = (TDado *)p->dado;
 
     if (d->topo >= 0)
         return d->pilha[d->topo--];
-    return NaN;
+    return NULL;
 }
 
 /**Verifica a ocupação da pilha. Para uma pilha criada, verifica se ela tem UM

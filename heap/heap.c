@@ -44,7 +44,7 @@ static int Remover(THeap* h)
     void *aux;
     int pos = 0;
     int i = 0;
-    void movs = 0;
+    int movs = 0;
     d->ocupacao--;
     d->vetor->atualizar(d->vetor, 0, d->vetor->acessar(d->vetor, d->ocupacao));
     d->vetor->atualizar(d->vetor, d->ocupacao, comparavel);

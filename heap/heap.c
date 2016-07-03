@@ -10,24 +10,25 @@ typedef struct {
     TArrayDinamico* vetor;
 } TDado;
 
-static void Inserir(THeap* h, void* elemento)
+static int Inserir(THeap* h, void* elemento)
 {
     TDado* d = (TDado*)h->dado;
     int i = d->ocupacao, pai;
     void* aux;
+    int movs = 0;
     TComparavel* comparavel = (TComparavel*)elemento;
     printf("%d\n", i);
     d->vetor->atualizar(d->vetor, i, elemento);
     d->ocupacao++;
     pai = (i - 1) / 2;
     while (comparavel->compara(d->vetor->acessar(d->vetor, pai), d->vetor->acessar(d->vetor, i)) < 0) {
-        printf("%d %d %d %d\n", *(int*)d->vetor->acessar(d->vetor, pai), *(int*)d->vetor->acessar(d->vetor, i), pai, i);
         aux = d->vetor->acessar(d->vetor, pai);
         d->vetor->atualizar(d->vetor, pai, d->vetor->acessar(d->vetor, i));
         d->vetor->atualizar(d->vetor, i, aux);
         i = pai;
         pai = (i - 1) / 2;
     }
+    return movs;
 }
 
 static void* Topo(THeap* h)
@@ -36,13 +37,14 @@ static void* Topo(THeap* h)
     return d->vetor->acessar(d->vetor, 0);
 }
 
-static void Remover(THeap* h)
+static int Remover(THeap* h)
 {
     TDado* d = (TDado*)h->dado;
     TComparavel* comparavel = d->vetor->acessar(d->vetor, 0);
     void *aux;
     int pos = 0;
     int i = 0;
+    void movs = 0;
     d->ocupacao--;
     d->vetor->atualizar(d->vetor, 0, d->vetor->acessar(d->vetor, d->ocupacao));
     d->vetor->atualizar(d->vetor, d->ocupacao, comparavel);
@@ -63,6 +65,7 @@ static void Remover(THeap* h)
             i = d->ocupacao;
         }
     }
+    return movs;
 }
 
 THeap *CriarHeap()

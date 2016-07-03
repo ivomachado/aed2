@@ -1,7 +1,7 @@
 typedef struct heap THeap;
 
-typedef void (*TInserir)(THeap *, void *);
-typedef void (*TRemover)(THeap *);
+typedef int (*TInserir)(THeap *, void *);
+typedef int (*TRemover)(THeap *);
 typedef void *(*TTopo)(THeap *);
 
 THeap *CriarHeap();

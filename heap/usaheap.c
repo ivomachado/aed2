@@ -2,33 +2,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 6
+#define SIZE 12
 
 void print(void* v)
 {
     printf("%d____\n", *(int*)v);
 }
 
+typedef struct Int TInt;
+
+typedef int (*TCompara)(void*, void*);
+
+
+struct Int {
+    int value;
+    TCompara compara;
+};
+
 int comparar(void* a, void* b)
 {
-    return *(int*)a - *(int*)b;
+    return ((TInt*)a)->value - ((TInt *)b)->value;
+}
+
+TInt * CriarInt(int value)
+{
+    TInt *elem = (TInt *)malloc(sizeof(TInt));
+    elem->value = value;
+    elem->compara = comparar;
+    return elem;
 }
 
 int main()
 {
-    THeap* f = CriarHeap(SIZE, print, comparar);
+    THeap* f = CriarHeap();
     int oi[SIZE];
     int i;
-    int* var;
+    TInt* var;
     for (i = 1; i <= SIZE; i++) {
-        var = (int*)malloc(sizeof(int));
-        *var = i;
+        var = CriarInt(i);
         f->inserir(f, var);
-        f->print(f);
     }
 
     for (i = 0; i < SIZE; i++) {
-        oi[SIZE - i - 1] = *(int*)f->topo(f);
+        oi[SIZE - i - 1] = ((TInt*)f->topo(f))->value;
         f->remover(f);
     }
     for (i = 0; i < SIZE; i++) {

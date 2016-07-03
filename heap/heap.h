@@ -7,7 +7,7 @@ typedef int (*TComparar)(void *, void *);
 typedef void (*TPrintInterno)(void *);
 typedef void *(*TTopo)(THeap *);
 
-THeap *CriarHeap(int tam, TPrintInterno _print, TComparar comparar);
+THeap *CriarHeap();
 
 struct heap {
   void *dado;

@@ -4,20 +4,22 @@
 
 #define SIZE 12
 
-void print(void* v)
-{
-    printf("%d____\n", *(int*)v);
-}
-
 typedef struct Int TInt;
 
 typedef int (*TCompara)(void*, void*);
+typedef void (*TPrint)(void*);
 
 
 struct Int {
     int value;
     TCompara compara;
+    TPrint print;
 };
+
+void print(void * value)
+{
+    printf("%d", *(int*)value);
+}
 
 int comparar(void* a, void* b)
 {
@@ -29,6 +31,7 @@ TInt * CriarInt(int value)
     TInt *elem = (TInt *)malloc(sizeof(TInt));
     elem->value = value;
     elem->compara = comparar;
+    elem->print = print;
     return elem;
 }
 

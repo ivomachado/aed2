@@ -4,5 +4,5 @@ CFLAGS = -Wall -g
 SRC=$(wildcard *.c)
 HEADERS=$(wildcard *.h)
 
-a: $(HEADERS) $(SRC)
+transcoder: $(HEADERS) $(SRC)
 	gcc -o $@ $^ $(CFLAGS)

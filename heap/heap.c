@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 typedef struct {
     int ocupacao;
     TArrayDinamico* vetor;
@@ -31,10 +30,16 @@ static int Inserir(THeap* h, void* elemento)
     return movs;
 }
 
+static short Vazia(THeap* h)
+{
+    TDado* d = (TDado*)h->dado;
+    return d->ocupacao == 0;
+}
+
 static void* Topo(THeap* h)
 {
     TDado* d = (TDado*)h->dado;
-    return d->vetor->acessar(d->vetor, 0);
+    return Vazia(h)? NULL : d->vetor->acessar(d->vetor, 0);
 }
 
 static int Remover(THeap* h)
@@ -45,6 +50,7 @@ static int Remover(THeap* h)
     int pos = 0;
     int i = 0;
     int movs = 0;
+    if(Vazia(h)) return movs;
     d->ocupacao--;
     d->vetor->atualizar(d->vetor, 0, d->vetor->acessar(d->vetor, d->ocupacao));
     d->vetor->atualizar(d->vetor, d->ocupacao, comparavel);
@@ -68,7 +74,7 @@ static int Remover(THeap* h)
     return movs;
 }
 
-THeap *CriarHeap()
+THeap* CriarHeap()
 {
     TDado* d = (TDado*)malloc(sizeof(TDado));
     THeap* heap = (THeap*)malloc(sizeof(THeap));
@@ -80,5 +86,6 @@ THeap *CriarHeap()
     heap->inserir = Inserir;
     heap->remover = Remover;
     heap->topo = Topo;
+    heap->vazia = Vazia;
     return heap;
 }

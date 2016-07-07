@@ -20,9 +20,9 @@ static void* acessar(TArrayDinamico* ad, int pos){
 	TDado *dado = ad->dado;
 	return dado->_dado[pos];
 }
-static void atualizar(TArrayDinamico* ad, int pos, void* elemento){
+static int atualizar(TArrayDinamico* ad, int pos, void* elemento){
 	TDado *d = ad->dado;
-	int k, novoTamanho;
+	int k, novoTamanho = 0;
 	if (pos >= d->tamanho){
 		k = floor(log2(pos)) + 1;
 		novoTamanho = (int)pow(2,k);
@@ -30,6 +30,7 @@ static void atualizar(TArrayDinamico* ad, int pos, void* elemento){
 		d->tamanho = novoTamanho;
 	}
 	d->_dado[pos] = elemento;
+	return novoTamanho;
 }
 static int tamanho(TArrayDinamico *ad){
 	TDado *d = ad->dado;

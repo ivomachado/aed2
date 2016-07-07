@@ -1,7 +1,7 @@
 typedef struct arraydinamico TArrayDinamico;
 
 typedef void* (*TAcessarAD)(TArrayDinamico*, int pos);
-typedef void (*TAtualizarAD)(TArrayDinamico*, int pos, void* elemento);
+typedef int (*TAtualizarAD)(TArrayDinamico*, int pos, void* elemento);
 typedef int (*TTamanhoAD)(TArrayDinamico*);
 TArrayDinamico* criarArrayDinamico();
 

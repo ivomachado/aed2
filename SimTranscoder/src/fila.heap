@@ -16,7 +16,6 @@ static int Inserir(THeap* h, void* elemento)
     void* aux;
     int movs = 0;
     TComparavel* comparavel = (TComparavel*)elemento;
-    printf("%d\n", i);
     d->vetor->atualizar(d->vetor, i, elemento);
     d->ocupacao++;
     pai = (i - 1) / 2;

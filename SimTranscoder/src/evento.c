@@ -27,8 +27,8 @@ void destruirEvento(TEvento *ev){
 }
 
 static void printEvento(TEvento *ev){
-	TDadoEvento *d = ev->dado;
-	printf("Tempo:%f Tipo:%d\n",d->tempo,d->tipo);
+	// TDadoEvento *d = ev->dado;
+	// printf("Tempo:%f Tipo:%d\n",d->tempo,d->tipo);
 }
 
 static double getTempoEvento(TEvento *ev){

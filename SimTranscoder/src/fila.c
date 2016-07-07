@@ -35,7 +35,11 @@ typedef struct {
 static void* Desenfileirar(TFila *f){
 	TDadoFila *d = f->dado;
 	void *elemento = d->heap->topo(d->heap);
-	d->heap->remover(d->heap);
+	int movs = d->heap->remover(d->heap);
+	if(movs > 0) {
+		d->stats.movimentou += movs;
+		d->stats.removeu++;
+	}
 	//printf("P:%d U:%d\n", d->primeiro, d->ultimo)
 	return elemento;
 }
@@ -52,10 +56,14 @@ static void* Desenfileirar(TFila *f){
 static short Enfileirar(TFila *f, void *elemento){
 	short status = 1; // verdade (vai dar tudo certo)
 	TDadoFila *d = f->dado;
-
-	d->heap->inserir(d->heap, elemento);
+	int movs = d->heap->inserir(d->heap, elemento);
 	// Atualiza estatística
-	d->stats.inseriu += (status==1?1:0);
+	if(movs < 0) {
+		d->stats.sobrecarregou++;
+		movs *= -1;
+	}
+	d->stats.movimentou += movs;
+	d->stats.inseriu++;
 	d->stats.sobrecarregou += (status==0?1:0);
 
 	return status;

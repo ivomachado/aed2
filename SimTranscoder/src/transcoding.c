@@ -86,7 +86,7 @@ int main(){
 				destruirJob(transVideo);
 			}
 		} else{
-			printf("PANIC: Evento nao catalogado\n");
+			// printf("PANIC: Evento nao catalogado\n");
 			exit(0);
 		}
 

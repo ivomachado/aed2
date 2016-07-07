@@ -107,6 +107,10 @@ TFila* criarFila(){
 
 	TDadoFila *d = malloc(sizeof(TDadoFila));
 	d->heap = CriarHeap();
+	d->stats.movimentou = 0;
+	d->stats.inseriu = 0;
+	d->stats.removeu = 0;
+	d->stats.sobrecarregou = 0;
 
 	f->dado = d;
 

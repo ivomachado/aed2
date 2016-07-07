@@ -18,7 +18,8 @@ static int Inserir(THeap* h, void* elemento)
     int sobrecarregou = 0;
     TComparavel* comparavel = (TComparavel*)elemento;
     movs = d->vetor->atualizar(d->vetor, i, elemento);
-    sobrecarregou = movs > 0;
+    sobrecarregou = movs > 0 ? 1 : 0;
+    movs++;
     d->ocupacao++;
     pai = (i - 1) / 2;
     while (comparavel->compara(d->vetor->acessar(d->vetor, pai), d->vetor->acessar(d->vetor, i)) < 0) {
@@ -27,20 +28,26 @@ static int Inserir(THeap* h, void* elemento)
         d->vetor->atualizar(d->vetor, i, aux);
         i = pai;
         pai = (i - 1) / 2;
+        movs++;
     }
-    return sobrecarregou ? -1 * movs: movs;
+    if(sobrecarregou) return -1 * movs;
+    else return movs;
 }
 
 static short Vazia(THeap* h)
 {
     TDado* d = (TDado*)h->dado;
-    return d->ocupacao == 0;
+    return d->ocupacao == 0 ? 1 : 0;
 }
 
 static void* Topo(THeap* h)
 {
     TDado* d = (TDado*)h->dado;
-    return Vazia(h)? NULL : d->vetor->acessar(d->vetor, 0);
+    if(Vazia(h)) {
+        return NULL;
+    } else {
+        return d->vetor->acessar(d->vetor, 0);
+    }
 }
 
 static int Remover(THeap* h)

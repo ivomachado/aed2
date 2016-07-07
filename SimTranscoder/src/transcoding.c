@@ -18,6 +18,7 @@ int main(){
 
 	oServico = criarServico(nroServidores);
 
+
 	//cria agenda de eventos
 	agenda = criarAgenda();
 

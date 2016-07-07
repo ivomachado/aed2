@@ -5,4 +5,4 @@ SRC=$(wildcard *.c)
 HEADERS=$(wildcard *.h)
 
 transcoder: $(HEADERS) $(SRC)
-	gcc -o $@ $^ $(CFLAGS)
+	gcc $^ $(CFLAGS) -o $@

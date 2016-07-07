@@ -54,7 +54,6 @@ static void* Desenfileirar(TFila *f){
  * Pós-Cond: elemento inserido na fila, se houver espaço.
  */
 static short Enfileirar(TFila *f, void *elemento){
-	short status = 1; // verdade (vai dar tudo certo)
 	TDadoFila *d = f->dado;
 	int movs = d->heap->inserir(d->heap, elemento);
 	// Atualiza estatística
@@ -64,9 +63,7 @@ static short Enfileirar(TFila *f, void *elemento){
 	}
 	d->stats.movimentou += movs;
 	d->stats.inseriu++;
-	d->stats.sobrecarregou += (status==0?1:0);
-
-	return status;
+	return 1;
 }
 
 /**Verifica a ocupação da fila. Para uma fila criada, verifica se ela tem UM elemento, pelo menos. Caso haja elementos o status retornado é de que a fila NÃO está vazia, caso contrário tem-se a indicação de fila vazia.

@@ -16,7 +16,8 @@
 typedef struct{
 	int inseriu;
 	int removeu;
-	int movimentou;
+	int movimentou_insercao;
+	int movimentou_remocao;
 	int sobrecarregou;
 } TStatsFila;
 
@@ -37,7 +38,7 @@ static void* Desenfileirar(TFila *f){
 	void *elemento = d->heap->topo(d->heap);
 	int movs = d->heap->remover(d->heap);
 	if(movs > 0) {
-		d->stats.movimentou += movs;
+		d->stats.movimentou_remocao += movs;
 		d->stats.removeu++;
 	}
 	//printf("P:%d U:%d\n", d->primeiro, d->ultimo)
@@ -61,7 +62,7 @@ static short Enfileirar(TFila *f, void *elemento){
 		d->stats.sobrecarregou++;
 		movs *= -1;
 	}
-	d->stats.movimentou += movs;
+	d->stats.movimentou_insercao += movs;
 	d->stats.inseriu++;
 	return 1;
 }
@@ -88,7 +89,8 @@ static void Analytics(TFila *f){
 
 	printf("inserções:%d\n", d->stats.inseriu);
 	printf("removeu:%d\n", d->stats.removeu);
-	printf("movimentou:%d\n", d->stats.movimentou);
+	printf("movimentou para inserir:%d\n", d->stats.movimentou_insercao);
+	printf("movimentou para remover:%d\n", d->stats.movimentou_remocao);
 	printf("sobrecarga:%d\n", d->stats.sobrecarregou);
 }
 
@@ -104,7 +106,8 @@ TFila* criarFila(){
 
 	TDadoFila *d = malloc(sizeof(TDadoFila));
 	d->heap = CriarHeap();
-	d->stats.movimentou = 0;
+	d->stats.movimentou_insercao = 0;
+	d->stats.movimentou_remocao = 0;
 	d->stats.inseriu = 0;
 	d->stats.removeu = 0;
 	d->stats.sobrecarregou = 0;

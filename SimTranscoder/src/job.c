@@ -61,6 +61,17 @@ static double getTempoChegadaJob(TJob *v){
 	return d->tempoChegada;
 }
 
+short comparaJob(TJob *v, TJob *v2){
+	if (v->getPrioridade(v) == v2->getPrioridade(v2)){
+		return 0;
+	}else if (v->getPrioridade(v) > v2->getPrioridade(v2)){
+		return 1;
+	}else{
+		return -1;
+	}
+}
+
+
 TJob * criarJob(){
     TJob *job;
     
@@ -74,6 +85,7 @@ TJob * criarJob(){
     		job->getTempoChegada = getTempoChegadaJob;
     		job->getTempoTranscoding = getTempoTranscodingJob;
     		job->setTempoTranscoding = setTempoTranscodingJob;
+			job->compara = comparaJob;
     }else{
     		free(job);
     		job=NULL;
@@ -82,15 +94,6 @@ TJob * criarJob(){
 	return job;
 }
 
-short comparaJob(TJob *v, TJob *v2){
-	if (v->getPrioridade(v) == v2->getPrioridade(v2)){
-		return 0;
-	}else if (v->getPrioridade(v) > v2->getPrioridade(v2)){
-		return 1;
-	}else{
-		return -1;
-	}
-}
 
 void destruirJob(TJob *v){
 	free(v->dado);

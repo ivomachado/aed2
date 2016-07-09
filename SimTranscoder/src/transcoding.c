@@ -34,7 +34,7 @@ int main(){
 		evento = agenda->proximo(agenda);
 		relogio = evento->getTempo(evento);
 
-		evento->print(evento);
+		// evento->print(evento);
 
 		if ( (evento->getTipo(evento) == CHEGADA) && ( oServico->ocioso(oServico) ) ){
 			oServico->chegada(oServico,video);

@@ -1,23 +1,24 @@
 
-typedef struct video TJob;
+typedef struct job TJob;
 TJob *criarJob();
 void destruirJob(TJob*);
-short comparaJob(TJob*, TJob*);
-typedef void (*TImprimirVideo)(TJob *v);
-typedef int (*TGetDuracaoVideo)(TJob *v);
-typedef int (*TGetPrioridadeVideo)(TJob *v);
-typedef double (*TGetTempoChegadaVideo)(TJob *v);
-typedef int (*TGetTempoTranscodingVideo)(TJob *v);
-typedef void (*TSetTempoTranscodingVideo)(TJob *v, int);
+typedef void (*TImprimirJob)(TJob *v);
+typedef int (*TGetDuracaoJob)(TJob *v);
+typedef int (*TGetPrioridadeJob)(TJob *v);
+typedef double (*TGetTempoChegadaJob)(TJob *v);
+typedef int (*TGetTempoTranscodingJob)(TJob *v);
+typedef void (*TSetTempoTranscodingJob)(TJob *v, int);
+typedef short (*TComparaJob)(TJob*, TJob*);
 
-struct video{
+struct job{
 	void *dado;
-	TImprimirVideo imprimir;
-	TGetDuracaoVideo getDuracao;
-	TGetPrioridadeVideo getPrioridade;
-	TGetTempoChegadaVideo getTempoChegada;
-	TSetTempoTranscodingVideo setTempoTranscoding;
-	TGetTempoTranscodingVideo getTempoTranscoding;
+	TComparaJob compara;
+	TImprimirJob imprimir;
+	TGetDuracaoJob getDuracao;
+	TGetPrioridadeJob getPrioridade;
+	TGetTempoChegadaJob getTempoChegada;
+	TSetTempoTranscodingJob setTempoTranscoding;
+	TGetTempoTranscodingJob getTempoTranscoding;
 };
 
 // Atividades

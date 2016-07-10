@@ -9,6 +9,7 @@
 #include "stdlib.h"
 #include "heap.h"
 #include "stdio.h"
+#include "fila.h"
 
 #define NaN NULL
 #define TAM 10

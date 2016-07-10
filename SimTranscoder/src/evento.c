@@ -42,7 +42,7 @@ static TTipoEvento getTipoEvento(TEvento *ev){
 	return d->tipo;
 }
 static short comparaEvento(TEvento *e1, TEvento *e2){
-	if ( e1->getTempo(e1) < e2->getTempo(e2) ){
+	if ( e1->getTempo(e1) > e2->getTempo(e2) ){
 		return -1;
 	} else if( e1->getTempo(e1) == e2->getTempo(e2) ){
 		if ( (e1->getTipo(e1) == CHEGADA) && (e2->getTipo(e2) == TRANSCODING) )

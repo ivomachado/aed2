@@ -36,6 +36,8 @@ def run_test(mode):
             cmd = 'ptime ' + executable + ' < ' + inputfile + outputmarker + outputfile
             print(cmd)
             a = os.system(cmd)
+            if instancia >= 10**5 and mode == 'circular':
+                break
         
         result_file = open(outputfile, 'a+')
         file_content = ''.join(result_file.readlines())
